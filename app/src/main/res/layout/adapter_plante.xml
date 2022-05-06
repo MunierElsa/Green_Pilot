@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background">
+
+        <ImageView
+            android:id="@+id/adapter_plante_imageview"
+            android:layout_width="50dp"
+            tools:src="@drawable/tomate"
+            android:layout_height="50dp">
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/adapter_plante_name_textView"
+                android:layout_width="346dp"
+                android:layout_height="25dp"
+                android:background="@color/green"
+                android:paddingStart="10dp"></TextView>
+
+            <TextView
+                android:id="@+id/adapter_plante_values_textView"
+                android:layout_width="346dp"
+                android:layout_height="25dp"
+                android:background="@color/green"
+                android:paddingStart="10dp"></TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
