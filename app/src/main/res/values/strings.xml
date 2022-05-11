@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Green Pilot</string>
+    <string name="plant_add_button">Ajouter</string>
+    <string name="plant_name">Nom plante</string>
+    <string name="plant_species">Espèce</string>
+    <string name="plant_date">Date plantation</string>
+    <string name="plant_description">Notes</string>
+    <string-array name="species">
+        <item>Tomate</item>
+        <item>Fraise</item>
+        <item>Menthe</item>
+        <item>Basilic</item>
+        <item>Courgette</item>
+    </string-array>
 </resources>

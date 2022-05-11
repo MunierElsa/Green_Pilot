@@ -1,8 +1,10 @@
 package fr.epf.plantes_connectees.model
 
-data class Plante (
-    val id : Int,
-    val name: String,
+
+data class Plante(
+    val id: Int,
+    var name: String,
+    val species: String,
     val description: String,
     val date: String,
 ) {
@@ -12,6 +14,7 @@ data class Plante (
             Plante(
                 nb,
                 "nom$it",
+                "tomate",
                 "description$it",
                 "2022-05-$it",
             )

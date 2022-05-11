@@ -23,9 +23,9 @@ class PlanteAdapter(val plantes: List<Plante>) : RecyclerView.Adapter<PlanteAdap
         val plante = plantes[position]
 
         val textview = holder.view.findViewById<TextView>(R.id.adapter_plante_name_textView)
-        textview.setTextColor(Color.parseColor("#FFFFFFFF"));
+        textview.setTextColor(Color.parseColor("#FF000000"));
         val textview2 = holder.view.findViewById<TextView>(R.id.adapter_plante_values_textView)
-        textview2.setTextColor(Color.parseColor("#FFFFFFFF"));
+        textview2.setTextColor(Color.parseColor("#FF000000"));
         val planteImageView = holder.view.findViewById<ImageView>(R.id.adapter_plante_imageview)
         textview.text = plante.getNom()
         textview2.text = plante.getValeurs()
