@@ -33,12 +33,16 @@ class AddPlantActivity : AppCompatActivity() {
 
             var plant =  Plante(2,"anne","tomate", "oui", "2424")
 
-            //var planteToAdd = Plante(list.size, nameEditText.text as String,
-              //  speciesSpinner.selectedItem as String, descriptionEditText.text as String,
-                //dateEditText.text as String)
+            var planteToAdd = Plante()
+            planteToAdd.id = list.size
+            //val name = nameEditText.text as String
+            /*planteToAdd.name = nameEditText.text as String
+            planteToAdd.species = speciesSpinner.selectedItem as String
+            planteToAdd.description = descriptionEditText.text as String
+            planteToAdd.date = dateEditText.text as String*/
 
 
-            list.add(plant)
+            list.add(planteToAdd)
             ListPlantObject.editList(list)
 
             Log.d("Plante", "Nom : ${nameEditText.text}")

@@ -2,12 +2,13 @@ package fr.epf.plantes_connectees.model
 
 
 data class Plante(
-    val id: Int,
+    var id: Int,
     var name: String,
-    val species: String,
-    val description: String,
-    val date: String,
+    var species: String,
+    var description: String,
+    var date: String,
 ) {
+    constructor() : this (0,"","","","")
     companion object {
 
         fun all(nb : Int = 30) = (1..40).map {
