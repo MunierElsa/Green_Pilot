@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity() {
         val id = item.itemId
         when(id){
             R.id.add -> {
-                startActivity(Intent(this, AddPlanteActivity::class.java))
+                val intent = Intent(this, AddPlanteActivity::class.java)
+                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)
