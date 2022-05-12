@@ -1,5 +1,6 @@
 package fr.epf.plantes_connectees
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,13 @@ class PlanteAdapter(val plantes: List<Plante>) : RecyclerView.Adapter<PlanteAdap
 
     override fun onBindViewHolder(holder: PlanteViewHolder, position: Int) {
         val plante = plantes[position]
+
+        holder.view.setOnClickListener{
+            val context = it.context
+            val intent = Intent(it.context, DetailsPlanteActivity::class.java)
+            intent.putExtra("id", position)
+            context.startActivity(intent)
+        }
 
         val textview = holder.view.findViewById<TextView>(R.id.adapter_plante_name_textView)
         textview.setTextColor(Color.parseColor("#FF000000"));

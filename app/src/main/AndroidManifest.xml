@@ -10,27 +10,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Plantes_connectees">
         <activity
-            android:name=".EditPlanteactivity"
+            android:name=".EditPlanteActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-            <!--<intent-filter>
+            android:exported="true">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
             -
         </activity>
         <activity
-            android:name=".AddPlantActivity"
-            android:exported="true">
+            android:name=".AddPlanteActivity"
+            android:exported="false">
 
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
+        <activity
+            android:name=".DetailsPlanteActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

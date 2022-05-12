@@ -1,15 +1,19 @@
 package fr.epf.plantes_connectees
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import fr.epf.plantes_connectees.data.ListPlantObject
 import fr.epf.plantes_connectees.model.Plante
+import fr.epf.plantes_connectees.model.Species
 
-class AddPlantActivity : AppCompatActivity() {
+class AddPlanteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addplant)
@@ -24,14 +28,12 @@ class AddPlantActivity : AppCompatActivity() {
         val addButton = findViewById<Button>(R.id.add_plant_button)
 
         addButton.setOnClickListener {
-
-
             // Ajouter la plante à la liste
             var list : MutableList<Plante> = mutableListOf()
             list = ListPlantObject.getListPlant() as MutableList<Plante>
 
 
-            var plant =  Plante(2,"anne","tomate", "oui", "2424")
+            var plant =  Plante(2,"anne",Species.Courgette, "oui", "2424")
 
             var planteToAdd = Plante()
             planteToAdd.id = list.size
@@ -45,13 +47,29 @@ class AddPlantActivity : AppCompatActivity() {
             list.add(planteToAdd)
             ListPlantObject.editList(list)
 
-            Log.d("Plante", "Nom : ${nameEditText.text}")
-            Log.d("Plante", "Espèce : ${speciesEditText.text}")
-            Log.d("Plante", "Espèce spinner : ${speciesSpinner.selectedItem}")
-            Log.d("Plante", "Date plantation : ${dateEditText.text}")
-            Log.d("Plante", "Description : ${descriptionEditText.text}")
+                Log.d("Plante", "Nom : ${nameEditText.text}")
+                Log.d("Plante", "Espèce : ${speciesEditText.text}")
+                Log.d("Plante", "Espèce spinner : ${speciesSpinner.selectedItem}")
+                Log.d("Plante", "Date plantation : ${dateEditText.text}")
+                Log.d("Plante", "Description : ${descriptionEditText.text}")
+
+            startActivity(Intent(this, MainActivity::class.java))
+            }
+
+
         }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_add_plante, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
