@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import fr.epf.plantes_connectees.data.ListPlantObject
+import fr.epf.plantes_connectees.model.Mesure
 import fr.epf.plantes_connectees.model.Plante
 import fr.epf.plantes_connectees.model.Species
 
@@ -31,9 +32,9 @@ class AddPlanteActivity : AppCompatActivity() {
             // Ajouter la plante à la liste
             var list : MutableList<Plante> = mutableListOf()
             list = ListPlantObject.getListPlant() as MutableList<Plante>
+            var listmesures : MutableList<Mesure> = mutableListOf()
 
-
-            var plant =  Plante(2,"anne",Species.Courgette, "oui", "2424")
+            var plant =  Plante("","", "", "",listmesures)
 
             //var planteToAdd = Plante()
             //planteToAdd.id = list.size

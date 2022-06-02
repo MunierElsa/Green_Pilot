@@ -46,7 +46,7 @@ class PlanteAdapter(val plantes: List<Plante>) : RecyclerView.Adapter<PlanteAdap
 
 //Rajouter des fonctions à des classes dans des bibliothèques que l'on a pas créé
 fun Plante.getNom() : String {
-    return "${name} ${description}"
+    return "${Adresse_Mac_plante} ${Description_plante}"
 }
 
 fun Plante.getValeurs() : String {

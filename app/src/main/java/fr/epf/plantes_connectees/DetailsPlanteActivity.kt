@@ -21,13 +21,13 @@ class DetailsPlanteActivity : AppCompatActivity() {
         var plante = ListPlantObject.getListPlant()[positionPlante]
 
         val nameTextView = findViewById<TextView>(R.id.name_textView)
-        nameTextView.text = plante.name+ "\n"
+        nameTextView.text = plante.Adresse_Mac_plante+ "\n"
         val speciesTextView = findViewById<TextView>(R.id.species_textView)
-        speciesTextView.text = plante.species.toString()+ "\n"
+        speciesTextView.text = plante.Libelle_plante.toString() + "\n"
         val dateTextView = findViewById<TextView>(R.id.date_textView)
-        dateTextView.text = plante.date+ "\n"
+        dateTextView.text = plante.Date_plantation_plante+ "\n"
         val descriptionTextView = findViewById<TextView>(R.id.description_textView)
-        descriptionTextView.text = plante.description
+        descriptionTextView.text = plante.Description_plante
 
         val planteImageView = findViewById<ImageView>(R.id.adapter_plante_imageview)
 
