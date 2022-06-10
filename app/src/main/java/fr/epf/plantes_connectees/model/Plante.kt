@@ -1,32 +1,33 @@
 package fr.epf.plantes_connectees.model
 
+import androidx.room.*
+import com.google.gson.Gson
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.lang.Math.random
 
 enum class Species{
     Tomate, Fraise, Menthe, Basilic, Courgette
 }
 
+@Entity
 data class Plante(
-    val Adresse_Mac_plante: String,
-    val Libelle_plante: String,
-    val Date_plantation_plante: String,
-    val Description_plante: String,
-    var Mesures: MutableList<Mesure>
+    @PrimaryKey val Adresse_Mac_plante: String,
+    @ColumnInfo(name="Libelle_plante")val Libelle_plante: String,
+    @ColumnInfo(name="Date_plantation_plante")val Date_plantation_plante: String,
+    @ColumnInfo(name="Description_plante")val Description_plante: String,
+    @ColumnInfo(name="Mesures") var Mesures: MutableList<Mesure>
 ) {
-    constructor() : this ("","","","",list)
-    companion object {
-        val list: MutableList<Mesure> = mutableListOf()
-        fun all(nb : Int = 30) = (1..40).map {
-            val random = (1 until 6).random()
-            Plante(
-                "adressemac$it",
-                "",
-                //if (random == 1) Species.Tomate else if (random == 2) Species.Fraise else if(random == 3) Species.Menthe else if(random == 4) Species.Basilic else Species.Courgette,
-                "2022-05-$it",
-                "description$it",
-                list
-            )
+    public constructor() : this ("","","","", mutableListOf())
 
-        }
-    }
+}
+
+class Converters {
+
+    @TypeConverter
+    fun listToJsonString(value: List<Mesure>?): String = Gson().toJson(value)
+
+    @TypeConverter
+    fun jsonStringToList(value: String) = Gson().fromJson(value, Array<Mesure>::class.java).toList()
 }

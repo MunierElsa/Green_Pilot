@@ -19,7 +19,6 @@ class AddPlanteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addplant)
 
-        ListPlantObject.createListPlant()
         val nameEditText: EditText = findViewById<EditText>(R.id.name_edittext)
         val speciesEditText: EditText = findViewById(R.id.species_edittext)
         val dateEditText: EditText = findViewById(R.id.date_edittext)
@@ -47,13 +46,6 @@ class AddPlanteActivity : AppCompatActivity() {
 
             list.add(plant)
             ListPlantObject.editList(list)
-
-                Log.d("Plante", "Nom : ${nameEditText.text}")
-                Log.d("Plante", "Espèce : ${speciesEditText.text}")
-                Log.d("Plante", "Espèce spinner : ${speciesSpinner.selectedItem}")
-                Log.d("Plante", "Date plantation : ${dateEditText.text}")
-                Log.d("Plante", "Description : ${descriptionEditText.text}")
-
             startActivity(Intent(this, MainActivity::class.java))
             }
 

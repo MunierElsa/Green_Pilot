@@ -1,6 +1,11 @@
 package fr.epf.plantes_connectees
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +13,14 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import fr.epf.plantes_connectees.api.InfosMesuresService
 import fr.epf.plantes_connectees.api.InfosPlantesService
+import fr.epf.plantes_connectees.data.AppDatabaseMesure
+import fr.epf.plantes_connectees.data.AppDatabasePlante
 import fr.epf.plantes_connectees.data.ListPlantObject
 import fr.epf.plantes_connectees.model.Mesure
 import fr.epf.plantes_connectees.model.Plante
-import fr.epf.plantes_connectees.model.Species
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -28,18 +35,37 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //On créé une liste que l'on va réutiliser le long du projet
-        ListPlantObject.createListPlant()
-
         val listPlantesRecyclerview = findViewById<RecyclerView>(R.id.list_plantes_recyclerview)
 
         listPlantesRecyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 
-        synchroApi()
 
-        val plants = planteslist
-        listPlantesRecyclerview.adapter = PlanteAdapter(plants)
+        synchroApi()
+        //if (checkForInternet(this)) {
+        //}
+
+        //DAO
+        val dbPlante = Room.databaseBuilder(
+            applicationContext,
+            AppDatabasePlante::class.java, "database-name"
+        ).allowMainThreadQueries().build()
+        val dbMesure = Room.databaseBuilder(
+            applicationContext,
+            AppDatabaseMesure::class.java, "database-name"
+        ).allowMainThreadQueries().build()
+
+        val planteDao = dbPlante.planteDao()
+        val mesureDao = dbMesure.mesureDao()
+
+        ListPlantObject.initializeDAO(planteDao, mesureDao)
+
+        ListPlantObject.updateDao(planteslist)
+        val plants = ListPlantObject.getListPlant()
+        if (plants != null) {
+            listPlantesRecyclerview.adapter = PlanteAdapter(plants)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -110,5 +136,46 @@ class MainActivity : AppCompatActivity() {
 
         }
         Log.d("EPF", planteslist.toString())
+    }
+
+
+    @SuppressLint("MissingPermission")
+    private fun checkForInternet(context: Context): Boolean {
+
+        // register activity with the connectivity manager service
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        // if the android version is equal to M
+        // or greater we need to use the
+        // NetworkCapabilities to check what type of
+        // network has the internet connection
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            // Returns a Network object corresponding to
+            // the currently active default data network.
+            val network = connectivityManager.activeNetwork ?: return false
+
+            // Representation of the capabilities of an active network.
+            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+            return when {
+                // Indicates this network uses a Wi-Fi transport,
+                // or WiFi has network connectivity
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+
+                // Indicates this network uses a Cellular transport. or
+                // Cellular has network connectivity
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+
+                // else return false
+                else -> false
+            }
+        } else {
+            // if the android version is below M
+            @Suppress("DEPRECATION") val networkInfo =
+                connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
+        }
     }
 }

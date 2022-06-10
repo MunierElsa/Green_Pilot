@@ -18,21 +18,23 @@ class DetailsPlanteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_details_plante)
 
         positionPlante =intent.getIntExtra("id", -1)
-        var plante = ListPlantObject.getListPlant()[positionPlante]
+        var plante = ListPlantObject.getListPlant()?.get(positionPlante)
 
         val nameTextView = findViewById<TextView>(R.id.name_textView)
-        nameTextView.text = plante.Adresse_Mac_plante+ "\n"
+        nameTextView.text = plante?.Adresse_Mac_plante+ "\n"
         val speciesTextView = findViewById<TextView>(R.id.species_textView)
-        speciesTextView.text = plante.Libelle_plante.toString() + "\n"
+        speciesTextView.text = plante?.Libelle_plante.toString() + "\n"
         val dateTextView = findViewById<TextView>(R.id.date_textView)
-        dateTextView.text = plante.Date_plantation_plante+ "\n"
+        dateTextView.text = plante?.Date_plantation_plante+ "\n"
         val descriptionTextView = findViewById<TextView>(R.id.description_textView)
-        descriptionTextView.text = plante.Description_plante
+        descriptionTextView.text = plante?.Description_plante
 
         val planteImageView = findViewById<ImageView>(R.id.adapter_plante_imageview)
 
 
-        planteImageView.setPlante(plante)
+        if (plante != null) {
+            planteImageView.setPlante(plante)
+        }
 
 
     }
