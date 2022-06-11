@@ -50,15 +50,10 @@ class MainActivity : AppCompatActivity() {
             applicationContext,
             AppDatabasePlante::class.java, "database-name"
         ).allowMainThreadQueries().build()
-        val dbMesure = Room.databaseBuilder(
-            applicationContext,
-            AppDatabaseMesure::class.java, "database-name"
-        ).allowMainThreadQueries().build()
 
         val planteDao = dbPlante.planteDao()
-        val mesureDao = dbMesure.mesureDao()
 
-        ListPlantObject.initializeDAO(planteDao, mesureDao)
+        ListPlantObject.initializeDAO(planteDao)
 
         ListPlantObject.updateDao(planteslist)
         val plants = ListPlantObject.getListPlant()

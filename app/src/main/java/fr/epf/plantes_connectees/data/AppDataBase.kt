@@ -14,6 +14,7 @@ abstract class AppDatabasePlante : RoomDatabase() {
 }
 
 @Database(entities = [Mesure::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class AppDatabaseMesure : RoomDatabase() {
     abstract fun mesureDao(): MesureDao
 }
