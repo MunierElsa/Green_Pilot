@@ -8,17 +8,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import fr.epf.plantes_connectees.data.ListPlantObject
+import fr.epf.plantes_connectees.model.Plante
 
 class DetailsPlanteActivity : AppCompatActivity() {
 
     var positionPlante = -1
+    var plante = Plante()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_plante)
 
         positionPlante =intent.getIntExtra("id", -1)
-        var plante = ListPlantObject.getListPlant()?.get(positionPlante)
+        plante = ListPlantObject.getListPlant()?.get(positionPlante)!!
 
         val nameTextView = findViewById<TextView>(R.id.name_textView)
         nameTextView.text = plante?.Adresse_Mac_plante+ "\n"
@@ -47,13 +49,19 @@ class DetailsPlanteActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         when(id){
-            R.id.Modifier-> {
-                startActivity(Intent(this, EditPlanteActivity::class.java))
+            R.id.edit-> {
+                val intent = Intent(this, EditPlanteActivity::class.java)
+                intent.putExtra("id", positionPlante)
+                startActivity(intent)
+            }
+            R.id.Delete-> {
+                ListPlantObject.deletePlantInDao(plante)
+                startActivity(Intent(this, MainActivity::class.java))
             }
             R.id.Arroser-> {
                 //startActivity(Intent(this, ArroserPlantActivity::class.java))
             }
-            R.id.home->{
+            R.id.logo->{
                 startActivity(Intent(this, MainActivity::class.java))
             }
         }

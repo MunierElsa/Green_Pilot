@@ -2,9 +2,9 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/add"
-        android:icon="@drawable/ic_baseline_add_24"
-        android:title="Add"
+        android:id="@+id/reload"
+        android:icon="@drawable/ic_baseline_reloadapi_24"
+        android:title="Reload"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/logo"

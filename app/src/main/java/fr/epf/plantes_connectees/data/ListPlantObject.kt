@@ -74,5 +74,15 @@ object ListPlantObject {
         Log.d("After Update", "$listPlantToTestApp")
     }
 
+    fun editPlantInDao(plante : Plante){
+
+        planteDao?.updatePlantes(plante)
+        //TODO edit API
+    }
+    fun deletePlantInDao(plante : Plante){
+        planteDao?.delete(plante)
+        //TODO delete plante in API
+    }
+
 
 }

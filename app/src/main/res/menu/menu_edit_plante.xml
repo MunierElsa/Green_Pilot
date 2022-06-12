@@ -11,10 +11,5 @@
         android:icon="@drawable/ic_baseline_arrow_back_24"
         android:title="Back"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/logo"
-        android:icon="@drawable/logo"
-        android:title="Logo"
-        app:showAsAction="ifRoom" />
 
 </menu>

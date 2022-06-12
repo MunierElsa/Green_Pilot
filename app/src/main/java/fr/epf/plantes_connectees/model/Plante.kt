@@ -14,9 +14,9 @@ enum class Species{
 @Entity
 data class Plante(
     @PrimaryKey val Adresse_Mac_plante: String,
-    @ColumnInfo(name="Libelle_plante")val Libelle_plante: String,
-    @ColumnInfo(name="Date_plantation_plante")val Date_plantation_plante: String,
-    @ColumnInfo(name="Description_plante")val Description_plante: String,
+    @ColumnInfo(name="Libelle_plante") var Libelle_plante: String,
+    @ColumnInfo(name="Date_plantation_plante") var Date_plantation_plante: String,
+    @ColumnInfo(name="Description_plante") var Description_plante: String,
     @ColumnInfo(name="Mesures") var Mesures: MutableList<Mesure>
 ) {
     public constructor() : this ("","","","", mutableListOf())
