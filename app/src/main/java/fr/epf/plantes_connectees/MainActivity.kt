@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             infosplantes.map {
-                val(Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante) = it
+                val(Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante,Niveau_irrigation_plante,Seuil_humidite_plante) = it
                 val mesuresplantelist: MutableList<Mesure> = mutableListOf()
                 for(mesure in mesureslist){
                     if(Adresse_Mac_plante == mesure.Adresse_Mac_Plante){
@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 Plante(
-                    Adresse_Mac_plante,Libelle_plante,Date_plantation_plante, Description_plante,mesuresplantelist
+                    Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante, Niveau_irrigation_plante, Seuil_humidite_plante, mesuresplantelist
                 )
             }.map {
                 planteslist.add(it)

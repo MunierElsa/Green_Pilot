@@ -2,10 +2,6 @@ package fr.epf.plantes_connectees.model
 
 import androidx.room.*
 import com.google.gson.Gson
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import java.lang.Math.random
 
 enum class Species{
     Tomate, Fraise, Menthe, Basilic, Courgette
@@ -17,9 +13,11 @@ data class Plante(
     @ColumnInfo(name="Libelle_plante")val Libelle_plante: String,
     @ColumnInfo(name="Date_plantation_plante")val Date_plantation_plante: String,
     @ColumnInfo(name="Description_plante")val Description_plante: String,
+    @ColumnInfo(name="Niveau_irrigation_plante")val Niveau_irrigation_plante: String,
+    @ColumnInfo(name="Seuil_humidite_plante")val Seuil_humidite_plante: String,
     @ColumnInfo(name="Mesures") var Mesures: MutableList<Mesure>
 ) {
-    public constructor() : this ("","","","", mutableListOf())
+    public constructor() : this ("","","","","","", mutableListOf())
 
 }
 

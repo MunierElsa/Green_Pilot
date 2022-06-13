@@ -33,7 +33,7 @@ class AddPlanteActivity : AppCompatActivity() {
             list = ListPlantObject.getListPlant() as MutableList<Plante>
             var listmesures : MutableList<Mesure> = mutableListOf()
 
-            var plant =  Plante("","", "", "",listmesures)
+            var plant =  Plante("","", "", "","","",listmesures)
 
             //var planteToAdd = Plante()
             //planteToAdd.id = list.size
