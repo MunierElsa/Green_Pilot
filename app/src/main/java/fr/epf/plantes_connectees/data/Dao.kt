@@ -16,9 +16,6 @@ interface PlanteDao {
 
     @Update
     fun updatePlantes(vararg plantes: Plante)
-
-
-
 }
 
 @Dao
@@ -32,6 +29,6 @@ interface MesureDao {
     @Delete
     fun delete(mesure: Mesure)
 
-
+    @Update
+    fun updateMesures(vararg mesures: Mesure)
 }
-

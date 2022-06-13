@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 
 
-        synchroApi()
+        //synchroApi()
         //if (checkForInternet(this)) {
         //}
 
@@ -50,15 +50,10 @@ class MainActivity : AppCompatActivity() {
             applicationContext,
             AppDatabasePlante::class.java, "database-name"
         ).allowMainThreadQueries().build()
-        val dbMesure = Room.databaseBuilder(
-            applicationContext,
-            AppDatabaseMesure::class.java, "database-name"
-        ).allowMainThreadQueries().build()
 
         val planteDao = dbPlante.planteDao()
-        val mesureDao = dbMesure.mesureDao()
 
-        ListPlantObject.initializeDAO(planteDao, mesureDao)
+        ListPlantObject.initializeDAO(planteDao)
 
         ListPlantObject.updateDao(planteslist)
         val plants = ListPlantObject.getListPlant()
@@ -76,8 +71,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         when(id){
-            R.id.add -> {
-                val intent = Intent(this, AddPlanteActivity::class.java)
+            R.id.reload -> {
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }
