@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 
 
-        //synchroApi()
+        synchroApi()
         //if (checkForInternet(this)) {
         //}
 

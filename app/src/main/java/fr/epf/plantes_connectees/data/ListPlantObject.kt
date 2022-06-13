@@ -63,8 +63,8 @@ object ListPlantObject {
 
 
     fun getListPlant() : List<Plante>? {
-    //return listPlantToTestApp
-    return planteDao?.getAllPlantes()
+    return listPlantToTestApp
+    //return planteDao?.getAllPlantes()
     }
 
     fun editList( listUpdated : List<Plante>){

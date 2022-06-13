@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import fr.epf.plantes_connectees.model.Mesure
 import fr.epf.plantes_connectees.model.Plante
 
 class PlanteAdapter(val plantes: List<Plante>) : RecyclerView.Adapter<PlanteAdapter.PlanteViewHolder>() {
@@ -32,11 +33,14 @@ class PlanteAdapter(val plantes: List<Plante>) : RecyclerView.Adapter<PlanteAdap
 
         val textview = holder.view.findViewById<TextView>(R.id.adapter_plante_name_textView)
         textview.setTextColor(Color.parseColor("#FF000000"));
-        val textview2 = holder.view.findViewById<TextView>(R.id.adapter_plante_values_textView)
+        val textview2 = holder.view.findViewById<TextView>(R.id.adapter_plante_firstvalue_textView)
         textview2.setTextColor(Color.parseColor("#FF000000"));
+        val textview3 = holder.view.findViewById<TextView>(R.id.adapter_plante_secondvalue_textView)
+        textview3.setTextColor(Color.parseColor("#FF000000"));
         val planteImageView = holder.view.findViewById<ImageView>(R.id.adapter_plante_imageview)
         textview.text = plante.getNom()
-        textview2.text = plante.getValeurs()
+        textview2.text = plante.getFirstValue()
+        //textview3.text = plante.getSecondValue()
 
         planteImageView.setPlante(plante)
     }
@@ -46,9 +50,12 @@ class PlanteAdapter(val plantes: List<Plante>) : RecyclerView.Adapter<PlanteAdap
 
 //Rajouter des fonctions à des classes dans des bibliothèques que l'on a pas créé
 fun Plante.getNom() : String {
-    return "${Adresse_Mac_plante} ${Description_plante}"
+    return "${Adresse_Mac_plante} "
 }
 
-fun Plante.getValeurs() : String {
-    return "Luminosité, Température ..."
+fun Plante.getFirstValue() : String {
+    return "${Description_plante}"
+}
+fun Plante.getSecondValue() : String {
+    return "Lum : ${Mesures.last().Luminosite_mesure}, \n Temperature : ${Mesures.last().Temperature_mesure}"
 }

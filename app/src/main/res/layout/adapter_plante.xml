@@ -14,7 +14,7 @@
             android:id="@+id/adapter_plante_imageview"
             android:layout_width="80dp"
             tools:src="@drawable/tomate"
-            android:layout_height="80dp">
+            android:layout_height="130dp">
         </ImageView>
 
         <LinearLayout
@@ -26,15 +26,24 @@
             <TextView
                 android:id="@+id/adapter_plante_name_textView"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="65dp"
                 android:background="@color/green"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"></TextView>
 
             <TextView
-                android:id="@+id/adapter_plante_values_textView"
+                android:id="@+id/adapter_plante_firstvalue_textView"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
+                android:background="@color/green"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"></TextView>
+
+
+            <TextView
+                android:id="@+id/adapter_plante_secondvalue_textView"
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
                 android:background="@color/green"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"></TextView>
