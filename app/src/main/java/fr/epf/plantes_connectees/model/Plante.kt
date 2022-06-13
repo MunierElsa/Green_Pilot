@@ -13,8 +13,8 @@ data class Plante(
     @ColumnInfo(name="Libelle_plante") var Libelle_plante: String,
     @ColumnInfo(name="Date_plantation_plante") var Date_plantation_plante: String,
     @ColumnInfo(name="Description_plante") var Description_plante: String,
-    @ColumnInfo(name="Niveau_irrigation_plante")val Niveau_irrigation_plante: String,
-    @ColumnInfo(name="Seuil_humidite_plante")val Seuil_humidite_plante: String,
+    @ColumnInfo(name="Niveau_irrigation_plante") var Niveau_irrigation_plante: String,
+    @ColumnInfo(name="Seuil_humidite_plante") var Seuil_humidite_plante: String,
     @ColumnInfo(name="Mesures") var Mesures: MutableList<Mesure>,
     @ColumnInfo(name="Irrigations") var Irrigations: MutableList<Irrigation>,
 ) {

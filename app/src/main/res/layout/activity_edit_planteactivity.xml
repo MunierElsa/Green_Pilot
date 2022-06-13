@@ -21,7 +21,29 @@
         android:entries="@array/species">
 
     </Spinner>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Niveau d'irrigation"></TextView>
 
+    <Spinner
+        android:id="@+id/editlevel_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/levels">
+
+    </Spinner>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seuil humidité"></TextView>
+
+    <EditText
+        android:id="@+id/editseuilHumidite_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        ></EditText>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
