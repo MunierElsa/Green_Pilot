@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import fr.epf.plantes_connectees.data.ListPlantObject
+import fr.epf.plantes_connectees.model.Irrigation
 import fr.epf.plantes_connectees.model.Mesure
 import fr.epf.plantes_connectees.model.Plante
 import fr.epf.plantes_connectees.model.Species
@@ -32,8 +33,9 @@ class AddPlanteActivity : AppCompatActivity() {
             var list : MutableList<Plante> = mutableListOf()
             list = ListPlantObject.getListPlant() as MutableList<Plante>
             var listmesures : MutableList<Mesure> = mutableListOf()
+            var listirrigations : MutableList<Irrigation> = mutableListOf()
 
-            var plant =  Plante("","", "", "","","",listmesures)
+            var plant =  Plante("","", "", "","","",listmesures,listirrigations)
 
             //var planteToAdd = Plante()
             //planteToAdd.id = list.size

@@ -1,9 +1,16 @@
 package fr.epf.plantes_connectees.data
 
 import android.util.Log
-import com.google.gson.Gson
+import fr.epf.plantes_connectees.api.InfosPlantesService
 import fr.epf.plantes_connectees.model.Mesure
 import fr.epf.plantes_connectees.model.Plante
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ListPlantObject {
     private var listPlantToTestApp : List<Plante> = listOf()
@@ -14,12 +21,10 @@ object ListPlantObject {
 
     fun initializeDAO(planteDAOFromMainActivity : PlanteDao){
         planteDao = planteDAOFromMainActivity
-
     }
 
-
     fun updateDao(listFromApi : List<Plante>){
-        addMissingPlantesAndMesures(listFromApi)
+        //addMissingPlantesAndMesures(listFromApi)
         listPlantToTestApp = listFromApi
     }
 
@@ -63,8 +68,8 @@ object ListPlantObject {
 
 
     fun getListPlant() : List<Plante>? {
-    //return listPlantToTestApp
-    return planteDao?.getAllPlantes()
+    return listPlantToTestApp
+    //return planteDao?.getAllPlantes()
     }
 
     fun editList( listUpdated : List<Plante>){
@@ -81,7 +86,32 @@ object ListPlantObject {
     }
     fun deletePlantInDao(plante : Plante){
         planteDao?.delete(plante)
+        deletePlanteApi(plante)
         //TODO delete plante in API
+    }
+
+    private fun deletePlanteApi(plante : Plante) {
+
+        val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+        val station = OkHttpClient.Builder()
+            .addInterceptor(httpLoggingInterceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://azammouri.com/pc/uploads/")
+            .addConverterFactory(MoshiConverterFactory.create())
+            .client(station)
+            .build()
+
+        val serviceplantes = retrofit.create(InfosPlantesService::class.java)
+
+        val Adresse_Mac_plante = plante.Adresse_Mac_plante
+
+        CoroutineScope(Dispatchers.IO).launch {
+            serviceplantes.deletePlante(Adresse_Mac_plante)
+        }
     }
 
 
