@@ -119,9 +119,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             infosirrigations.map{
-                val(Id_irrigation, Date_irrigation, automatique_irrigation,Adresse_Mac_Plante) =it
+                val(Id_irrigation, Date_irrigation, Automatique_irrigation,Adresse_Mac_Plante) =it
                 Irrigation(
-                    Id_irrigation, Date_irrigation, automatique_irrigation,Adresse_Mac_Plante
+                    Id_irrigation, Date_irrigation, Automatique_irrigation, Adresse_Mac_Plante
                 )
             }.map{
                 irrigationslist.add(it)

@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class Irrigation(
     @ColumnInfo(name="Id_irrigation") val Id_irrigation: String,
     @ColumnInfo(name="Date_irrigation") val Date_irrigation: String,
-    @ColumnInfo(name="automatique_irrigation")  val automatique_irrigation: String,
+    @ColumnInfo(name="Automatique_irrigation")  val Automatique_irrigation: String,
     @PrimaryKey val Adresse_Mac_Plante: String,
 )  {
     constructor() : this ("","","","")
