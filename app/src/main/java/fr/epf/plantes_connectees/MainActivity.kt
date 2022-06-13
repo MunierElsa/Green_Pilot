@@ -8,17 +8,17 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import fr.epf.plantes_connectees.api.InfosIrrigationsService
 import fr.epf.plantes_connectees.api.InfosMesuresService
 import fr.epf.plantes_connectees.api.InfosPlantesService
-import fr.epf.plantes_connectees.data.AppDatabaseMesure
 import fr.epf.plantes_connectees.data.AppDatabasePlante
 import fr.epf.plantes_connectees.data.ListPlantObject
+import fr.epf.plantes_connectees.model.Irrigation
 import fr.epf.plantes_connectees.model.Mesure
 import fr.epf.plantes_connectees.model.Plante
 import kotlinx.coroutines.runBlocking
@@ -96,14 +96,18 @@ class MainActivity : AppCompatActivity() {
 
         val serviceplantes = retrofit.create(InfosPlantesService::class.java)
         val servicemesures = retrofit.create(InfosMesuresService::class.java)
+        val serviceirrigations = retrofit.create(InfosIrrigationsService::class.java)
 
         val mesureslist: MutableList<Mesure> = mutableListOf()
+        val irrigationslist: MutableList<Irrigation> = mutableListOf()
 
         runBlocking {
             val result1 = servicemesures.getInfosMesures()
             val infosmesures = result1.data.mesures
             val result2 = serviceplantes.getInfosPlantes()
             val infosplantes = result2.data.plantes
+            val result3 = serviceplantes.getInfosPlantes()
+            val infosirrigations = result2.data.plantes
 
             infosmesures.map{
                 val(Id_mesure, Date_mesure, Humidite_mesure, Temperature_mesure, Luminosite_mesure, CO2_mesure, Adresse_Mac_Plante) =it
@@ -114,23 +118,37 @@ class MainActivity : AppCompatActivity() {
                 mesureslist.add(it)
             }
 
+            infosirrigations.map{
+                val(Id_irrigation, Date_irrigation, Automatique_irrigation,Adresse_Mac_Plante) =it
+                Irrigation(
+                    Id_irrigation, Date_irrigation, Automatique_irrigation, Adresse_Mac_Plante
+                )
+            }.map{
+                irrigationslist.add(it)
+            }
+
             infosplantes.map {
                 val(Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante,Niveau_irrigation_plante,Seuil_humidite_plante) = it
                 val mesuresplantelist: MutableList<Mesure> = mutableListOf()
+                val irrigationsplantelist: MutableList<Irrigation> = mutableListOf()
                 for(mesure in mesureslist){
                     if(Adresse_Mac_plante == mesure.Adresse_Mac_Plante){
                         mesuresplantelist.add(mesure)
                     }
                 }
+                for(irrigation in irrigationslist) {
+                    if (Adresse_Mac_plante == irrigation.Adresse_Mac_Plante) {
+                        irrigationsplantelist.add(irrigation)
+                    }
+                }
                 Plante(
-                    Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante, Niveau_irrigation_plante, Seuil_humidite_plante, mesuresplantelist
+                    Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante, Niveau_irrigation_plante, Seuil_humidite_plante, mesuresplantelist, irrigationsplantelist
                 )
             }.map {
                 planteslist.add(it)
             }
 
         }
-        Log.d("EPF", planteslist.toString())
     }
 
 

@@ -8,7 +8,15 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import fr.epf.plantes_connectees.api.InfosPlantesService
 import fr.epf.plantes_connectees.data.ListPlantObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 class EditPlanteActivity : AppCompatActivity() {
     var positionPlante = -1
@@ -26,11 +34,11 @@ class EditPlanteActivity : AppCompatActivity() {
         val editPlantButton = findViewById<Button>(R.id.edit_plant_button)
 
 
-        editPlantButton.setOnClickListener{
-            if(editNotesTextView.text.toString() == ""){
+        editPlantButton.setOnClickListener {
+            if (editNotesTextView.text.toString() == "") {
                 plante?.Description_plante = editNotesTextView.text.toString()
             }
-            if(editdateTextView.text.toString() == ""){
+            if (editdateTextView.text.toString() == "") {
                 plante?.Date_plantation_plante = editdateTextView.text.toString()
             }
             plante?.Libelle_plante = libelleSpinner.selectedItem as String
@@ -38,7 +46,6 @@ class EditPlanteActivity : AppCompatActivity() {
             if (plante != null) {
                 ListPlantObject.editPlantInDao(plante)
             }
-            // TODO edit plante in API
             val intent = Intent(this, DetailsPlanteActivity::class.java)
             intent.putExtra("id", positionPlante)
             startActivity(intent)
@@ -47,7 +54,7 @@ class EditPlanteActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_edit_plante, menu)
-        return super.onCreateOptionsMenu(menu, )
+        return super.onCreateOptionsMenu(menu,)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -63,4 +70,5 @@ class EditPlanteActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }
