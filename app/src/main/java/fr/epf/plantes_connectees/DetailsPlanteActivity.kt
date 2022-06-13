@@ -29,7 +29,10 @@ class DetailsPlanteActivity : AppCompatActivity() {
         val dateTextView = findViewById<TextView>(R.id.date_textView)
         dateTextView.text = plante?.Date_plantation_plante+ "\n"
         val descriptionTextView = findViewById<TextView>(R.id.description_textView)
-        descriptionTextView.text = plante?.Description_plante
+        descriptionTextView.text = plante?.Description_plante+"\n"
+        val humiditeTextView = findViewById<TextView>(R.id.humidite_textView)
+        humiditeTextView.text = "Dernière mesure : ${plante?.Mesures.last().Humidite_mesure}  Moyenne des 20 dernières : 22222"
+
 
         val planteImageView = findViewById<ImageView>(R.id.adapter_plante_imageview)
 

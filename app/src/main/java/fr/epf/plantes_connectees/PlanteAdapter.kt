@@ -40,7 +40,7 @@ class PlanteAdapter(val plantes: List<Plante>) : RecyclerView.Adapter<PlanteAdap
         val planteImageView = holder.view.findViewById<ImageView>(R.id.adapter_plante_imageview)
         textview.text = plante.getNom()
         textview2.text = plante.getFirstValue()
-        //textview3.text = plante.getSecondValue()
+        textview3.text = plante.getSecondValue()
 
         planteImageView.setPlante(plante)
     }
@@ -50,12 +50,15 @@ class PlanteAdapter(val plantes: List<Plante>) : RecyclerView.Adapter<PlanteAdap
 
 //Rajouter des fonctions à des classes dans des bibliothèques que l'on a pas créé
 fun Plante.getNom() : String {
-    return "${Adresse_Mac_plante} "
+    return "${Adresse_Mac_plante} \n \n "
 }
 
 fun Plante.getFirstValue() : String {
     return "${Description_plante}"
 }
 fun Plante.getSecondValue() : String {
-    return "Lum : ${Mesures.last().Luminosite_mesure}, \n Temperature : ${Mesures.last().Temperature_mesure}"
+    return "Luminosité : ${Mesures.last().Luminosite_mesure} \n" +
+            "Temperature : ${Mesures.last().Temperature_mesure} degré \n" +
+            "Taux de CO2 : ${Mesures.last().CO2_mesure}\n" +
+            "Niveau d'humidité : ${Mesures.last().Humidite_mesure} "
 }

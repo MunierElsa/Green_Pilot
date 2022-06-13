@@ -13,8 +13,8 @@
         <ImageView
             android:id="@+id/adapter_plante_imageview"
             android:layout_width="80dp"
-            tools:src="@drawable/tomate"
-            android:layout_height="130dp">
+            tools:src="@drawable/ic_baseline_question_mark_24"
+            android:layout_height="150dp">
         </ImageView>
 
         <LinearLayout
@@ -26,15 +26,16 @@
             <TextView
                 android:id="@+id/adapter_plante_name_textView"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="37dp"
                 android:background="@color/green"
                 android:gravity="center_vertical"
-                android:paddingStart="10dp"></TextView>
+                android:paddingStart="10dp"
+                android:textSize="22sp"></TextView>
 
             <TextView
                 android:id="@+id/adapter_plante_firstvalue_textView"
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
+                android:layout_height="wrap_content"
                 android:background="@color/green"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"></TextView>
@@ -43,7 +44,7 @@
             <TextView
                 android:id="@+id/adapter_plante_secondvalue_textView"
                 android:layout_width="match_parent"
-                android:layout_height="33dp"
+                android:layout_height="wrap_content"
                 android:background="@color/green"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"></TextView>
