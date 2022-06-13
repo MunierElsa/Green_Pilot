@@ -98,45 +98,41 @@ class MainActivity : AppCompatActivity() {
         val servicemesures = retrofit.create(InfosMesuresService::class.java)
         val serviceirrigations = retrofit.create(InfosIrrigationsService::class.java)
 
-        val mesureslist: MutableList<Mesure> = mutableListOf()
-        val irrigationslist: MutableList<Irrigation> = mutableListOf()
-
         runBlocking {
 
             val result2 = serviceplantes.getInfosPlantes()
             val infosplantes = result2.data.plantes
-            val result3 = serviceirrigations.getInfosIrrigations()
-            val infosirrigations = result3.data.irrigations
-
-            infosirrigations.map{
-                val(Id_irrigation, Date_irrigation, Automatique_irrigation,Adresse_Mac_Plante) =it
-                Irrigation(
-                    Id_irrigation, Date_irrigation, Automatique_irrigation, Adresse_Mac_Plante
-                )
-            }.map{
-                irrigationslist.add(it)
-            }
 
             infosplantes.map {
                 val(Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante,Niveau_irrigation_plante,Seuil_humidite_plante) = it
+
                 val result1 = servicemesures.getInfosMesures(Adresse_Mac_plante,20)
                 val infosmesures = result1.data.mesures
                 val mesuresplantelist: MutableList<Mesure> = mutableListOf()
+
+                val result3 = serviceirrigations.getInfosIrrigations(Adresse_Mac_plante,20)
+                val infosirrigations = result3.data.irrigations
                 val irrigationsplantelist: MutableList<Irrigation> = mutableListOf()
-                for(irrigation in irrigationslist) {
-                    if (Adresse_Mac_plante == irrigation.Adresse_Mac_Plante) {
-                        irrigationsplantelist.add(irrigation)
-                    }
-                }
-                if(infosmesures == null){
+
+                if(infosmesures == null && infosirrigations == null){
                     Plante(
                         Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante, Niveau_irrigation_plante, Seuil_humidite_plante,
                         mesuresplantelist, irrigationsplantelist
                     )
-                } else{
+                } else if(infosmesures != null && infosirrigations == null){
                     Plante(
                         Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante, Niveau_irrigation_plante, Seuil_humidite_plante,
                         infosmesures as MutableList<Mesure>, irrigationsplantelist
+                    )
+                }else if(infosmesures == null && infosirrigations != null) {
+                    Plante(
+                        Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante, Niveau_irrigation_plante, Seuil_humidite_plante,
+                        mesuresplantelist, infosirrigations as MutableList<Irrigation>
+                    )
+                }else{
+                    Plante(
+                        Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante, Niveau_irrigation_plante, Seuil_humidite_plante,
+                        infosmesures as MutableList<Mesure>, infosirrigations as MutableList<Irrigation>
                     )
                 }
 

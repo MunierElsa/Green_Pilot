@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface InfosMesuresService {
 
-    @GET("plante.php")
+    @GET("mesures.php")
     suspend fun getInfosMesures(@Query("Adresse_Mac_Plante")Adresse_Mac_Plante : String, @Query("n")n : Int): GetInfosMesuresResult
 
 }
