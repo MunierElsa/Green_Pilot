@@ -5,9 +5,13 @@ import fr.epf.plantes_connectees.model.Mesure
 import fr.epf.plantes_connectees.model.Plante
 
 @Dao
-interface PlanteDao {
+interface PlantesDao {
+    @Query("DELETE FROM plante")
+    fun deleteAll()
+
     @Query("SELECT * FROM plante")
     fun getAllPlantes(): List<Plante>
+
 
     @Insert
     fun insert(vararg plante: Plante)
@@ -20,7 +24,7 @@ interface PlanteDao {
 }
 
 @Dao
-interface MesureDao {
+interface MesuresDao {
     @Query("SELECT * FROM mesure")
     fun getAllMesures(): List<Mesure>
 

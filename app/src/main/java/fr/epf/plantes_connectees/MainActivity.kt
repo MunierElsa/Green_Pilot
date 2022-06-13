@@ -16,7 +16,7 @@ import androidx.room.Room
 import fr.epf.plantes_connectees.api.InfosIrrigationsService
 import fr.epf.plantes_connectees.api.InfosMesuresService
 import fr.epf.plantes_connectees.api.InfosPlantesService
-import fr.epf.plantes_connectees.data.AppDatabasePlante
+import fr.epf.plantes_connectees.data.AppDatabasePlantes
 import fr.epf.plantes_connectees.data.ListPlantObject
 import fr.epf.plantes_connectees.model.Irrigation
 import fr.epf.plantes_connectees.model.Mesure
@@ -48,12 +48,12 @@ class MainActivity : AppCompatActivity() {
         //DAO
         val dbPlante = Room.databaseBuilder(
             applicationContext,
-            AppDatabasePlante::class.java, "database-name"
-        ).allowMainThreadQueries().build()
+            AppDatabasePlantes::class.java, "database-name"
+        ).fallbackToDestructiveMigration().allowMainThreadQueries().build()
 
-        val planteDao = dbPlante.planteDao()
+        val plantesDao = dbPlante.planteDao()
 
-        ListPlantObject.initializeDAO(planteDao)
+        ListPlantObject.initializeDAO(plantesDao)
 
         ListPlantObject.updateDao(planteslist)
         val plants = ListPlantObject.getListPlant()

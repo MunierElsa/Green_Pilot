@@ -2,7 +2,6 @@ package fr.epf.plantes_connectees.data
 
 import android.util.Log
 import fr.epf.plantes_connectees.api.InfosPlantesService
-import fr.epf.plantes_connectees.model.Mesure
 import fr.epf.plantes_connectees.model.Plante
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,51 +14,34 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object ListPlantObject {
     private var listPlantToTestApp : List<Plante> = listOf()
 
-    var planteDao : PlanteDao? = null
+    var plantesDao : PlantesDao? = null
     var amountOfMesure : Int = 10
 
 
-    fun initializeDAO(planteDAOFromMainActivity : PlanteDao){
-        planteDao = planteDAOFromMainActivity
+    fun initializeDAO(planteDAOFromMainActivity : PlantesDao){
+        plantesDao = planteDAOFromMainActivity
     }
 
     fun updateDao(listFromApi : List<Plante>){
-        //addMissingPlantesAndMesures(listFromApi)
         listPlantToTestApp = listFromApi
+        addMissingPlantesAndMesures(listFromApi)
     }
 
     fun addMissingPlantesAndMesures(listFromApi : List<Plante>){
+        //plantesDao?.insert(listFromApi.last())
 
-        var listDAOBeforeSynchro = planteDao?.getAllPlantes()
+        var listDAOBeforeSynchro = plantesDao?.getAllPlantes()
 
         for (planteAPI in listFromApi) {
+
             val planteFromDAO: Plante? =
                 listDAOBeforeSynchro?.find { it.Adresse_Mac_plante == planteAPI.Adresse_Mac_plante }
 
-            val listLastsMesureForPlant : MutableList<Mesure> = mutableListOf()
-
-            val amountOfMesuresInPlante = planteFromDAO?.Mesures?.count()
-            if (amountOfMesuresInPlante != null) {
-                if(amountOfMesuresInPlante < amountOfMesure){
-                    amountOfMesure = amountOfMesuresInPlante
-                }
-                    for(i in 1..amountOfMesure){
-                        var planteMesure = planteFromDAO?.Mesures?.get(planteFromDAO.Mesures.count() - i)
-
-                        if (planteMesure != null) {
-                            listLastsMesureForPlant.add(planteMesure)
-                        }
-                    }
-            }
-            planteAPI?.Mesures?.clear()
-            planteAPI?.Mesures = listLastsMesureForPlant
-
-
             if(planteFromDAO == null){
-               planteDao?.insert(planteAPI)
+               plantesDao?.insert(planteAPI)
             }
             else {
-                planteDao?.updatePlantes(planteAPI)
+                plantesDao?.updatePlantes(planteAPI)
             }
 
 
