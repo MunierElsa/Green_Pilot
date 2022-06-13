@@ -102,21 +102,11 @@ class MainActivity : AppCompatActivity() {
         val irrigationslist: MutableList<Irrigation> = mutableListOf()
 
         runBlocking {
-            val result1 = servicemesures.getInfosMesures()
-            val infosmesures = result1.data.mesures
+
             val result2 = serviceplantes.getInfosPlantes()
             val infosplantes = result2.data.plantes
-            val result3 = serviceplantes.getInfosPlantes()
-            val infosirrigations = result2.data.plantes
-
-            infosmesures.map{
-                val(Id_mesure, Date_mesure, Humidite_mesure, Temperature_mesure, Luminosite_mesure, CO2_mesure, Adresse_Mac_Plante) =it
-                Mesure(
-                    Id_mesure, Date_mesure, Humidite_mesure, Temperature_mesure, Luminosite_mesure, CO2_mesure, Adresse_Mac_Plante
-                )
-            }.map{
-                mesureslist.add(it)
-            }
+            val result3 = serviceirrigations.getInfosIrrigations()
+            val infosirrigations = result3.data.irrigations
 
             infosirrigations.map{
                 val(Id_irrigation, Date_irrigation, Automatique_irrigation,Adresse_Mac_Plante) =it
@@ -129,21 +119,27 @@ class MainActivity : AppCompatActivity() {
 
             infosplantes.map {
                 val(Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante,Niveau_irrigation_plante,Seuil_humidite_plante) = it
+                val result1 = servicemesures.getInfosMesures(Adresse_Mac_plante,20)
+                val infosmesures = result1.data.mesures
                 val mesuresplantelist: MutableList<Mesure> = mutableListOf()
                 val irrigationsplantelist: MutableList<Irrigation> = mutableListOf()
-                for(mesure in mesureslist){
-                    if(Adresse_Mac_plante == mesure.Adresse_Mac_Plante){
-                        mesuresplantelist.add(mesure)
-                    }
-                }
                 for(irrigation in irrigationslist) {
                     if (Adresse_Mac_plante == irrigation.Adresse_Mac_Plante) {
                         irrigationsplantelist.add(irrigation)
                     }
                 }
-                Plante(
-                    Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante, Niveau_irrigation_plante, Seuil_humidite_plante, mesuresplantelist, irrigationsplantelist
-                )
+                if(infosmesures == null){
+                    Plante(
+                        Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante, Niveau_irrigation_plante, Seuil_humidite_plante,
+                        mesuresplantelist, irrigationsplantelist
+                    )
+                } else{
+                    Plante(
+                        Adresse_Mac_plante, Libelle_plante, Date_plantation_plante, Description_plante, Niveau_irrigation_plante, Seuil_humidite_plante,
+                        infosmesures as MutableList<Mesure>, irrigationsplantelist
+                    )
+                }
+
             }.map {
                 planteslist.add(it)
             }

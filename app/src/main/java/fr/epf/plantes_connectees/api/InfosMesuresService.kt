@@ -2,11 +2,13 @@ package fr.epf.plantes_connectees.api
 
 import fr.epf.plantes_connectees.model.Mesure
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface InfosMesuresService {
 
-    @GET("mesures.php")
-    suspend fun getInfosMesures(): GetInfosMesuresResult
+    @GET("plante.php")
+    suspend fun getInfosMesures(@Query("Adresse_Mac_Plante")Adresse_Mac_Plante : String, @Query("n")n : Int): GetInfosMesuresResult
 
 }
 data class GetInfosMesuresResult(val data: Mesures)

@@ -27,20 +27,20 @@ class EditPlanteActivity : AppCompatActivity() {
         positionPlante = intent.getIntExtra("id", -1)
         var plante = ListPlantObject.getListPlant()?.get(positionPlante)
 
-        val editdateTextView = findViewById<TextView>(R.id.date_edittext)
-        val editNotesTextView = findViewById<TextView>(R.id.description_edittext)
+        //val editdateTextView = findViewById<TextView>(R.id.date_edittext)
+        //val editNotesTextView = findViewById<TextView>(R.id.description_edittext)
         val libelleSpinner = findViewById<Spinner>(R.id.editspecies_spinner)
 
         val editPlantButton = findViewById<Button>(R.id.edit_plant_button)
 
 
         editPlantButton.setOnClickListener {
-            if (editNotesTextView.text.toString() == "") {
+            /*if (editNotesTextView.text.toString() == "") {
                 plante?.Description_plante = editNotesTextView.text.toString()
             }
             if (editdateTextView.text.toString() == "") {
                 plante?.Date_plantation_plante = editdateTextView.text.toString()
-            }
+            }*/
             plante?.Libelle_plante = libelleSpinner.selectedItem as String
 
             if (plante != null) {
