@@ -62,7 +62,7 @@ class DetailsPlanteActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
             }
             R.id.Arroser-> {
-                //startActivity(Intent(this, ArroserPlantActivity::class.java))
+                startActivity(Intent(this, ArroserPlanteActivity::class.java))
             }
             R.id.logo->{
                 startActivity(Intent(this, MainActivity::class.java))

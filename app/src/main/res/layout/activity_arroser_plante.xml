@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tittle_id"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Veuillez choisir le niveau d'irrigation puis appuyer sur le bouton irrriguer"
+        android:layout_marginTop="50dp"
+        android:textAlignment="center"/>
+
+        <Spinner
+            android:id="@+id/arroserlevel_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:entries="@array/levels">
+        </Spinner>
+
+    <Button
+        android:id="@+id/irrigation_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:layout_marginTop="60dp"
+        android:text="@string/irriguer" />
+
+</LinearLayout>

@@ -26,6 +26,9 @@
         <activity
             android:name=".DetailsPlanteActivity"
             android:exported="false" />
+        <activity
+            android:name=".ArroserPlanteActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

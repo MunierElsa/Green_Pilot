@@ -6,6 +6,7 @@
     <string name="plant_date">Date plantation</string>
     <string name="plant_description">Notes</string>
     <string name="plant_edit_button">Modifier</string>
+    <string name="irriguer">Irriguer</string>
     <string-array name="species">
         <item>Tomate</item>
         <item>Fraise</item>
