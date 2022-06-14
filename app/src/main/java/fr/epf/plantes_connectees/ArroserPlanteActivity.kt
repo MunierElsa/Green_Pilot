@@ -11,19 +11,23 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import fr.epf.plantes_connectees.data.ListPlantObject
 import fr.epf.plantes_connectees.model.Plante
+import fr.epf.plantes_connectees.mqtt.Mqtt
 
 class ArroserPlanteActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val adresse_mac = intent.getStringExtra("adresse_mac")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_arroser_plante)
-        val levelSpinner = findViewById<Spinner>(R.id.editlevel_spinner)
+        val levelSpinner = findViewById<Spinner>(R.id.arroserlevel_spinner)
         val irrigation_id = findViewById<Button>(R.id.irrigation_id)
 
         irrigation_id.setOnClickListener {
-            //Mettre le message à envoyé à Pascal
-            //levelSpinner.selectedItem as String
+            if (adresse_mac != null) {
+                Mqtt.sendMessage(this,adresse_mac,levelSpinner.selectedItem as String)
+            }
+
         }
     }
 

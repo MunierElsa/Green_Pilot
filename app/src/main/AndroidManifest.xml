@@ -28,13 +28,10 @@
         <activity
             android:name=".DetailsPlanteActivity"
             android:exported="false" />
-<<<<<<< Updated upstream
         <activity
             android:name=".ArroserPlanteActivity"
             android:exported="false" />
-=======
         <service android:name="org.eclipse.paho.android.service.MqttService" />
->>>>>>> Stashed changes
     </application>
 
 </manifest>

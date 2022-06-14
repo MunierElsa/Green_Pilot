@@ -58,7 +58,17 @@ fun Plante.getFirstValue() : String {
 }
 fun Plante.getSecondValue() : String {
     return "Luminosité : ${Mesures.last().Luminosite_mesure} \n" +
-            "Temperature : ${Mesures.last().Temperature_mesure} degré \n" +
-            "Taux de CO2 : ${Mesures.last().CO2_mesure}\n" +
+            "Temperature : ${Mesures.last().Temperature_mesure} °C \n" +
+            "Qualité de l'air : ${niveauCo2(Mesures.last().CO2_mesure)}\n" +
             "Niveau d'humidité : ${Mesures.last().Humidite_mesure} "
+}
+
+fun niveauCo2(tauxCO2 : String): String{
+    return when(tauxCO2){
+        "0"-> "très bonne qualité"
+        "1"-> "bonne qualité"
+        "2"-> "air pollué"
+        "3"-> "air très pollué"
+        else -> "Taux inconnu"
+    }
 }

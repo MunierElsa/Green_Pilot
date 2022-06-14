@@ -7,13 +7,12 @@ import fr.epf.plantes_connectees.model.Species
 fun ImageView.setPlante(plante : Plante) {
     this.setImageResource(
     when(plante.Libelle_plante){
-        "JonquilleTest3"-> R.drawable.basilic
-        /*Species.Tomate-> R.drawable.tomate
-        Species.Basilic-> R.drawable.basilic
-        Species.Fraise-> R.drawable.fraise
-        Species.Courgette-> R.drawable.courgette
-        Species.Menthe-> R.drawable.menthe*/
-        else -> {R.drawable.tomate}
+        "Tomate"-> R.drawable.tomate
+        "Basilic"-> R.drawable.basilic
+        "Fraise"-> R.drawable.fraise
+        "Courgette"-> R.drawable.courgette
+        "Menthe"-> R.drawable.menthe
+        else -> {R.drawable.ic_baseline_question_mark_24}
     }
     )
 }

@@ -31,13 +31,11 @@ class EditPlanteActivity : AppCompatActivity() {
         val editNotesTextView = findViewById<TextView>(R.id.editdescription_edittext)
         val editSeuilHumiditeTextView = findViewById<TextView>(R.id.editseuilHumidite_edittext)
         val libelleSpinner = findViewById<Spinner>(R.id.editspecies_spinner)
-        val levelSpinner = findViewById<Spinner>(R.id.editlevel_spinner)
+        //val levelSpinner = findViewById<Spinner>(R.id.editlevel_spinner)
 
         editdateTextView.text = plante?.Date_plantation_plante
         editNotesTextView.text = plante?.Description_plante
         editSeuilHumiditeTextView.text = plante?.Seuil_humidite_plante
-        //libelleSpinner.selectedItem = plante?.Libelle_plante
-
         val editPlantButton = findViewById<Button>(R.id.edit_plant_button)
 
 
@@ -53,7 +51,7 @@ class EditPlanteActivity : AppCompatActivity() {
                 plante?.Seuil_humidite_plante = editSeuilHumiditeTextView.text.toString()
             }
             plante?.Libelle_plante = libelleSpinner.selectedItem as String
-            plante?.Niveau_irrigation_plante = levelSpinner.selectedItem as String
+            //plante?.Niveau_irrigation_plante = levelSpinner.selectedItem as String
 
             if (plante != null) {
                 ListPlantObject.editPlantInDao(plante)

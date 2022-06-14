@@ -70,6 +70,35 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Luminosité"
+            android:textSize="25dp"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/luminosite_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            ></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Température"
+            android:textSize="25dp"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/temperature_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            ></TextView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Humidité"
             android:textSize="25dp"
             ></TextView>
@@ -80,24 +109,34 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             ></TextView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Taux de CO2"
+            android:textSize="25dp"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/tauxCO2_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            ></TextView>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity = "top">
     <ImageView
         android:id="@+id/adapter_plante_imageview"
-        android:layout_width="120dp"
+        android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginRight="10dp"
     ></ImageView>
-
-
-
-
-
     </LinearLayout>
 </LinearLayout>

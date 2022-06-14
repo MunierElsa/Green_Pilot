@@ -21,7 +21,7 @@
         android:entries="@array/species">
 
     </Spinner>
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Niveau d'irrigation"></TextView>
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:entries="@array/levels">
 
-    </Spinner>
+    </Spinner>-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

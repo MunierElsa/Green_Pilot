@@ -12,10 +12,10 @@ object Mqtt {
         const val TAG = "AndroidMqttClient"
 
 
-    fun sendMessage(context: Context, plante : Plante, typeArrosage : String ){
-        connect(context, plante, typeArrosage)
+    fun sendMessage(context: Context, adresse_mac : String, typeArrosage : String ){
+        connect(context, adresse_mac, typeArrosage)
     }
-    fun connect(context: Context, plante : Plante, typeArrosage : String ) {
+    fun connect(context: Context, adresse_mac: String, typeArrosage : String ) {
         val serverURI = "tcp://94.247.183.221:1883"
         mqttClient = MqttAndroidClient(context, serverURI, "kotlin_client")
         mqttClient.setCallback(object : MqttCallback {
@@ -37,7 +37,7 @@ object Mqtt {
             mqttClient.connect(options, null, object : IMqttActionListener {
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
                     Log.d(TAG, "Connection success")
-                    val msg: String = plante.Adresse_Mac_plante + typeArrosage
+                    val msg: String = adresse_mac + typeArrosage
                     publish("ArrosageRequest",msg)
                 }
 
