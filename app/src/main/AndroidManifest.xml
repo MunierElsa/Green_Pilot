@@ -3,13 +3,15 @@
     package="fr.epf.plantes_connectees">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Plantes_connectees">
+        android:theme="@style/Theme.Plantes_connectees" >
         <activity
             android:name=".EditPlanteActivity"
             android:exported="false" />
@@ -26,9 +28,13 @@
         <activity
             android:name=".DetailsPlanteActivity"
             android:exported="false" />
+<<<<<<< Updated upstream
         <activity
             android:name=".ArroserPlanteActivity"
             android:exported="false" />
+=======
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
+>>>>>>> Stashed changes
     </application>
 
 </manifest>

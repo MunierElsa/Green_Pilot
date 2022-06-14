@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import fr.epf.plantes_connectees.data.ListPlantObject
 import fr.epf.plantes_connectees.model.Plante
+import org.eclipse.paho.android.service.MqttAndroidClient
 
 class DetailsPlanteActivity : AppCompatActivity() {
 
@@ -62,7 +63,13 @@ class DetailsPlanteActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
             }
             R.id.Arroser-> {
+<<<<<<< Updated upstream
                 startActivity(Intent(this, ArroserPlanteActivity::class.java))
+=======
+                //startActivity(Intent(this, ArroserPlantActivity::class.java))
+
+
+>>>>>>> Stashed changes
             }
             R.id.logo->{
                 startActivity(Intent(this, MainActivity::class.java))

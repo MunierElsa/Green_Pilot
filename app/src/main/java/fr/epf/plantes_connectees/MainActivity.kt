@@ -21,6 +21,7 @@ import fr.epf.plantes_connectees.data.ListPlantObject
 import fr.epf.plantes_connectees.model.Irrigation
 import fr.epf.plantes_connectees.model.Mesure
 import fr.epf.plantes_connectees.model.Plante
+import fr.epf.plantes_connectees.mqtt.Mqtt
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         if (plants != null) {
             listPlantesRecyclerview.adapter = PlanteAdapter(plants)
         }
+
 
     }
 
