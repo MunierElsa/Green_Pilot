@@ -37,7 +37,7 @@ object Mqtt {
             mqttClient.connect(options, null, object : IMqttActionListener {
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
                     Log.d(TAG, "Connection success")
-                    val msg: String = adresse_mac + typeArrosage
+                    val msg: String = adresse_mac +" "+ typeArrosage
                     publish("ArrosageRequest",msg)
                 }
 
@@ -60,6 +60,7 @@ object Mqtt {
             mqttClient.publish(topic, message, null, object : IMqttActionListener {
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
                     Log.d(TAG, "$msg published to $topic")
+                    disconnect()
                 }
 
                 override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {

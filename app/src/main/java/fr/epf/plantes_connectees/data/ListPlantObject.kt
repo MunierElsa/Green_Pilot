@@ -12,10 +12,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ListPlantObject {
-    private var listPlantToTestApp : List<Plante> = listOf()
 
     var plantesDao : PlantesDao? = null
-    var amountOfMesure : Int = 10
 
 
     fun initializeDAO(planteDAOFromMainActivity : PlantesDao){
@@ -23,12 +21,6 @@ object ListPlantObject {
     }
 
     fun updateDao(listFromApi : List<Plante>){
-        listPlantToTestApp = listFromApi
-        addMissingPlantesAndMesures(listFromApi)
-    }
-
-    fun addMissingPlantesAndMesures(listFromApi : List<Plante>){
-        //plantesDao?.insert(listFromApi.last())
 
         var listDAOBeforeSynchro = plantesDao?.getAllPlantes()
 
@@ -43,33 +35,21 @@ object ListPlantObject {
             else {
                 plantesDao?.updatePlantes(planteAPI)
             }
-
-
         }
     }
 
 
     fun getListPlant() : List<Plante>? {
-    return listPlantToTestApp
-    //return planteDao?.getAllPlantes()
-    }
-
-    fun editList( listUpdated : List<Plante>){
-        Log.d("Before Update", "$listPlantToTestApp")
-        listPlantToTestApp = listUpdated
-
-        Log.d("After Update", "$listPlantToTestApp")
+    return plantesDao?.getAllPlantes()
     }
 
     fun editPlantInDao(plante : Plante){
-        //planteDao?.updatePlantes(plante)
+        plantesDao?.updatePlantes(plante)
         updatePlanteApi(plante)
-        //TODO edit API
     }
     fun deletePlantInDao(plante : Plante){
-        //planteDao?.delete(plante)
+        plantesDao?.delete(plante)
         deletePlanteApi(plante)
-        //TODO delete plante in API
     }
 
     private fun deletePlanteApi(plante : Plante) {
