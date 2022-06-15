@@ -12,6 +12,7 @@ fun ImageView.setPlante(plante : Plante) {
         "Fraise"-> R.drawable.fraise
         "Courgette"-> R.drawable.courgette
         "Menthe"-> R.drawable.menthe
+        "Persil"-> R.drawable.persil
         else -> {R.drawable.ic_baseline_question_mark_24}
     }
     )

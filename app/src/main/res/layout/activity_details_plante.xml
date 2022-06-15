@@ -26,19 +26,6 @@
         android:textSize="22dp"
         ></TextView>
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/plant_species"
-        android:textSize="25dp"></TextView>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/species_textView"
-        android:textSize="22dp"></TextView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

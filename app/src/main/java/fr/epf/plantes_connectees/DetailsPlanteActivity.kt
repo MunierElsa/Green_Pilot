@@ -26,8 +26,6 @@ class DetailsPlanteActivity : AppCompatActivity() {
 
         val nameTextView = findViewById<TextView>(R.id.name_textView)
         nameTextView.text = plante?.Adresse_Mac_plante+ "\n"
-        val speciesTextView = findViewById<TextView>(R.id.species_textView)
-        speciesTextView.text = plante?.Libelle_plante.toString() + "\n"
         val dateTextView = findViewById<TextView>(R.id.date_textView)
         dateTextView.text = plante?.Date_plantation_plante+ "\n"
         val descriptionTextView = findViewById<TextView>(R.id.description_textView)
@@ -53,10 +51,11 @@ class DetailsPlanteActivity : AppCompatActivity() {
         moyenneTemperature = moyenneTemperature/amountOfMesures
         moyenneLuminosite = moyenneLuminosite/amountOfMesures
         moyenneCO2 = moyenneCO2/amountOfMesures
-        humiditeTextView.text = "Dernière mesure : ${plante?.Mesures.last().Humidite_mesure}\nMoyenne : ${moyenneHumidité.roundToInt()}\n"
-        temperatureTextView.text = "Dernière mesure : ${plante?.Mesures.last().Temperature_mesure}\nMoyenne : ${moyenneTemperature.roundToInt()}\n"
-        luminositeTextView.text = "Dernière mesure : ${plante?.Mesures.last().Luminosite_mesure}\nMoyenne : ${moyenneLuminosite.roundToInt()}\n"
+        humiditeTextView.text = "Dernière mesure : ${plante?.Mesures.last().Humidite_mesure} %\nMoyenne : ${moyenneHumidité.roundToInt()}%\n"
+        temperatureTextView.text = "Dernière mesure : ${plante?.Mesures.last().Temperature_mesure} °C\nMoyenne : ${moyenneTemperature.roundToInt()}°C\n"
+        luminositeTextView.text = "Dernière mesure : ${plante?.Mesures.last().Luminosite_mesure} %\nMoyenne : ${moyenneLuminosite.roundToInt()}%\n"
         co2TextView.text = "Dernière mesure : ${niveauCo2(plante?.Mesures.last().CO2_mesure.toInt())}\nMoyenne : ${niveauCo2(moyenneCO2.roundToInt())}"
+
 
 
 

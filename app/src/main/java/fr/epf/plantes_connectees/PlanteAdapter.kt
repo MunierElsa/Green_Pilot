@@ -60,7 +60,10 @@ fun Plante.getSecondValue() : String {
     return "Luminosité : ${Mesures.last().Luminosite_mesure} \n" +
             "Temperature : ${Mesures.last().Temperature_mesure} °C \n" +
             "Qualité de l'air : ${niveauCo2(Mesures.last().CO2_mesure)}\n" +
-            "Niveau d'humidité : ${Mesures.last().Humidite_mesure} "
+            "Niveau d'humidité : ${Mesures.last().Humidite_mesure}  \n"+
+            "Dernier Arrosage :${Irrigations.last().Date_irrigation}"
+
+
 }
 
 fun niveauCo2(tauxCO2 : String): String{

@@ -29,10 +29,12 @@ object ListPlantObject {
             val planteFromDAO: Plante? =
                 listDAOBeforeSynchro?.find { it.Adresse_Mac_plante == planteAPI.Adresse_Mac_plante }
 
+
             if(planteFromDAO == null){
                plantesDao?.insert(planteAPI)
             }
             else {
+                planteAPI.Libelle_plante = planteFromDAO.Libelle_plante
                 plantesDao?.updatePlantes(planteAPI)
             }
         }

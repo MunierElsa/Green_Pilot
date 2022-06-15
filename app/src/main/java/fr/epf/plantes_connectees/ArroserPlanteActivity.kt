@@ -26,6 +26,7 @@ class ArroserPlanteActivity : AppCompatActivity() {
         irrigation_id.setOnClickListener {
             if (adresse_mac != null) {
                 Mqtt.sendMessage(this,adresse_mac,levelSpinner.selectedItem as String)
+                startActivity(Intent(this, MainActivity::class.java))
             }
 
         }
